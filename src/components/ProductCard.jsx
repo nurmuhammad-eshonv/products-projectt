@@ -14,7 +14,7 @@ function productCard({ product }) {
 
   return ( 
     <Link to={`/product/${id}`}>
-      <div className="site-container border w-96 bg-black-200 p-10 mt-10 rounded-lg inline-block ml-60">
+      <div className="site-container border w-96 bg-black-200 p-10 mt-10 rounded-lg inline-block ml-60 mr-20">
         <h1 className="text-3xl">{title}</h1>
         <p>{price}</p>
         <img src={thumbnail} alt="img" />
