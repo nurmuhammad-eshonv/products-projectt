@@ -9,7 +9,7 @@ function MainLayout() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="d-flex">
         <Outlet />
       </main>
       <Footer />

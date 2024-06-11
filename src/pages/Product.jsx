@@ -17,7 +17,7 @@ function Product() {
     <p>DESCRIPTION :{data.description}</p>
     <p>WEIGHT: {data.weight}</p>
     <p></p> */}
-          <div className="card lg:card-side bg-base-100 shadow-xl border-sky-300 d-flex site-container mt-32 mb-32">
+          <div className="card lg:card-side bg-base-100 shadow-xl border-red-300 d-flex site-container mt-32 mb-32 border-4">
             <figure>
               <img
                 src={data.thumbnail}
@@ -35,7 +35,6 @@ function Product() {
               <p className="text-amber-500 text-1xl"> <span className="text-green-500 font-mono text-2xl">Brand : </span>{data.brend}</p>
               <p></p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Thank you</button>
               </div>
             </div>
           </div>
