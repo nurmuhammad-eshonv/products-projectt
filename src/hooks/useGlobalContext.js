@@ -1,14 +1,14 @@
-import { useContext } from "react"
-import { GlobalContext } from "../context/GlobalContext"
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 function useGlobalContext() {
-    const context = useContext(GlobalContext)
-     
-    if(!context) {
-        throw new Error("something went wrong use globalcontextptovder")
-    }
+  const context = useContext(GlobalContext);
 
-  return context
+  if (!context) {
+    throw new Error("something went wrong use globalcontextptovder");
+  }
+
+  return context;
 }
 
-export {useGlobalContext}
+export { useGlobalContext };

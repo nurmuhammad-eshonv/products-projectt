@@ -5,7 +5,7 @@
 
 @layer components {
     .site-container{
-        @apply max-w-7xl mx-auto w-full
+        @apply max-w-7xl mx-auto w-full 
     }
 }
 .hover-shadow-box-animation {
@@ -22,3 +22,7 @@
     box-shadow: 1px 10px 10px -10px rgba(7, 7, 7, 0.5);
     transform: scale(1.1);
   } 
+
+main{
+  padding-left: 140px;
+}

@@ -1,13 +1,14 @@
-// App.jsx
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 
 // layout
 import MainLayout from "./layout/MainLayout";
-// nima gap ishla yaxshimi bo'lyaptimi
+
 // components
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import { Navigate } from "react-router-dom";
 
 // pages
 import Home from "./pages/Home";
@@ -16,12 +17,19 @@ import About from "./pages/About";
 import Product from "./pages/Product";
 import Login from "./pages/login";
 import Register from "./pages/register";
+
 // context
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "./context/GlobalContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseConfig";
+
+//action
+
+import { action as RegisterAction } from "./pages/register";
 
 function App() {
-  const { user } = useContext(GlobalContext);
+  const { user, dispatch, isAuthChange } = useContext(GlobalContext);
 
   console.log(user);
 
@@ -29,7 +37,7 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoutes user={true}>
+        <ProtectedRoutes user={user}>
           <MainLayout />
         </ProtectedRoutes>
       ),
@@ -39,33 +47,38 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/about",
+          path: "about",
           element: <About />,
         },
         {
-          path: "/contact",
+          path: "contact",
           element: <Contact />,
         },
         {
-          path: "/product/:id",
+          path: "product/:id",
           element: <Product />,
         },
       ],
     },
     {
-      path: "/Login",
-      element:  true ? <Navigate to="/" /> : <Login />,
+      path: "login",
+      element: user ? <Navigate to="/" /> : <Login />,
     },
     {
-      path: "/Register",
-      element: true ? <Navigate to="/" /> : <Register />,
+      path: "register",
+      element: user ? <Navigate to="/" /> : <Register />,
+      action: RegisterAction
     },
   ]);
 
-  return <RouterProvider router={routes} />;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch({ type: "LOG_IN", payload: user });
+      dispatch({ type: "AUTH_CHANGE" });
+    });
+  }, []);
+
+  return <>{isAuthChange && <RouterProvider router={routes} />}</>;
 }
 
 export default App;
-
-
-

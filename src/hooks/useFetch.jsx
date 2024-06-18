@@ -12,7 +12,7 @@ function useFetch(url) {
                 const request = await fetch(url)
 
                 if(!request.ok){
-                    throw new Error("something went wrong")
+                    throw new Error("something wentokoprtkgok wrong")
                 }
                 const response = await request.json()
                 setData(response)
